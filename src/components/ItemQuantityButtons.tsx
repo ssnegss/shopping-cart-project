@@ -1,10 +1,18 @@
 import { Button } from "react-bootstrap";
 
-interface quantityButtonsProps {
+type quantityButtonsProps = {
   quantity: number;
-}
+  onPlusClick: React.MouseEventHandler;
+  onMinusClick: React.MouseEventHandler;
+  onRemoveClick: React.MouseEventHandler;
+};
 
-export const ItemQuantityButtons = (props: quantityButtonsProps) => {
+export const ItemQuantityButtons = ({
+  quantity,
+  onPlusClick,
+  onMinusClick,
+  onRemoveClick,
+}: quantityButtonsProps) => {
   return (
     <div
       className="d-flex align-items-center flex-column"
@@ -14,14 +22,14 @@ export const ItemQuantityButtons = (props: quantityButtonsProps) => {
         className="d-flex align-items-center justify-content-center"
         style={{ gap: ".5rem" }}
       >
-        <Button>-</Button>
+        <Button onClick={onMinusClick}>-</Button>
         <div>
-          <span className="fs-3">{props.quantity}</span>
+          <span className="fs-3">{quantity}</span>
           in cart
         </div>
-        <Button>+</Button>
+        <Button onClick={onPlusClick}>+</Button>
       </div>
-      <Button variant="danger" size="sm">
+      <Button onClick={onRemoveClick} variant="danger" size="sm">
         remove
       </Button>
     </div>
