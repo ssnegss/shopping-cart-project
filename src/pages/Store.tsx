@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
+import { Col, Row } from "react-bootstrap";
+import { StoreItem } from "../components/StoreItem";
 
 export const Store = () => {
-  const [productData, setProductData] = useState([] as any[]);
+  const [storeItems, setstoreItems] = useState([] as any[]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://api.storerestapi.com/products");
+        const response = await fetch(
+          "https://api.escuelajs.co/api/v1/products"
+        );
         const json = await response.json();
-        setProductData(json.data);
-        console.log(json.data);
+        setstoreItems(json);
+        
       } catch (error) {
         console.log("error", error);
       }
@@ -20,13 +24,13 @@ export const Store = () => {
 
   return (
     <>
-      <ul>
-        {productData.map((product) => (
-          <li key={product._id}>
-            {product.title}
-          </li>
+      <Row md={2} xs={1} lg={3} className="g-3">
+        {storeItems.map((item) => (
+          <Col key={item.id}>
+            <StoreItem {...item} />
+          </Col>
         ))}
-      </ul>
+      </Row>
     </>
   );
 };
