@@ -13,7 +13,6 @@ export const Store = () => {
         );
         const json = await response.json();
         setstoreItems(json);
-        
       } catch (error) {
         console.log("error", error);
       }
