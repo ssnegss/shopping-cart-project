@@ -1,25 +1,9 @@
-import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { StoreItem } from "../components/StoreItem";
+import { StoreItems } from "../data/StoreItems"
 
 export const Store = () => {
-  const [storeItems, setstoreItems] = useState([] as any[]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://api.escuelajs.co/api/v1/products"
-        );
-        const json = await response.json();
-        setstoreItems(json);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const storeItems = StoreItems()
 
   return (
     <>

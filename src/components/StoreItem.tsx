@@ -24,7 +24,7 @@ export const StoreItem = ({ id, title, price, images }: StoreItemProps) => {
     <Card className="h-100">
       <Card.Img
         variant="top"
-        src={images}
+        src={images[1]}
         height="300px"
         style={{ objectFit: "cover" }}
       />
